@@ -1,7 +1,27 @@
-# Template para a disciplina de Redes Neurais e Algoritmos Genéticos
+# **Disciplina de Redes Neurais e Algoritmos Genéticos**
 
-Use este template como base para organizar seus experimentos na disciplina de Redes Neurais e Algoritmos Genéticos. 
+Fala, Colegas! Aqui você vai encontrar todas as práticas feitas na disciplina de Redes Neurais e Algoritmos Genéticos ministradas pelo querido professor Daniel Cassar na ILUM- Escola de Ciência.
+Na primeira aula fomos introduzidos ao estudo de Algoritmos Genéticos e testamos dois experimentos: Busca Aleatória e Busca em Grade.
+Para saber mais clique em Algoritmos Genéticos e leia o README para encontrar sobre os dois primeiros experimentos que fizemos.
 
+Até a próxima! :)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////
 Lembretes:
 
 + Cada notebook deve ter apenas um experimento

@@ -8,3 +8,5 @@ Na bsuca aleatória não temos a garantia que teremos um resultado ótimo, mas t
 Na busca em grande, o algoritmo testa todas (eu disse: TODAS!) as combinações possíveis dos conjuntos de parâmetros, e consequentemente, encontra os mínimos e máximos da função objetivo, o que pode ser bom e ruim. Quando digo que pode ser ruim, lembre-se da expressção "TODAS!", pelo fato de testar integralmente cada possibilidade, com um número grande de dados o teste pode demorar muito tempo e acabar sendo insastifatório para a pesquisa.
 
 Está curioso(a) para entender como aconteceu esses dois tipos de busca? Aqui na pasta de Algortimos Genéticos você clica em "experimento A.01" para busca aleatória e "experimento A.02" para busca em grade.
+
+No experimento A.03 fomos introduzidos ao algortimo genético e trabalhamos com contanstes como tamanho da população, número de genes, de gerações, chance de cruzamento e chance de mutações. Já no A.04, utilizamos as funções já criadas nas práticas anteriores, adicionamos novas e trabal

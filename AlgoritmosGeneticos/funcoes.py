@@ -96,6 +96,26 @@ def individuo_senha(tamanho_da_senha, letras):
 
     return candidato
 
+
+#desafio
+
+def individuo_desafio(mini, maxi):
+    """Cria um candidato para o problema da senha
+    Args:
+      tamanho_da_senha: inteiro representando o tamanho da senha.
+      letras: letras que podem ser sorteadas.
+    Return:
+      Lista com n letras
+    """
+
+    candidato = []
+    tamanho_da_senha = random.randit(mini, maxi)
+
+    for n in range(tamanho_da_senha):
+        candidato.append(gene_letra(letras))
+
+    return candidato
+
 ###############################################################################
 #                   Funções para populações                                   #
 ###############################################################################
@@ -148,6 +168,22 @@ def populacao_inicial_senha(tamanho, tamanho_senha, letras):
     for n in range(tamanho):
         populacao.append(individuo_senha(tamanho_senha, letras))
     return populacao
+
+
+def populacao_inicial_desafio(tamanho, mini, maxi, letras):
+    """Cria população inicial no problema da senha
+    Args
+      tamanho: tamanho da população.
+      tamanho_senha: inteiro representando o tamanho da senha.
+      letras: letras possíveis de serem sorteadas.
+    Returns:
+      Lista com todos os indivíduos da população no problema da senha.
+    """
+    populacao = []
+    for n in range(tamanho):
+        populacao.append(individuo_senha(tamanho_senha, letras))
+    return populacao
+
 
 
 ###############################################################################
@@ -270,6 +306,27 @@ def funcao_objetivo_senha(individuo, senha_verdadeira):
 
     return diferenca
 
+def funcao_objetivo_senha_desafio(individuo, senha_verdadeira):
+    """Computa a funcao objetivo de um individuo no problema da senha
+    Args:
+      individiuo: lista contendo as letras da senha
+      senha_verdadeira: a senha que você está tentando descobrir
+    Returns:
+      A "distância" entre a senha proposta e a senha verdadeira. Essa distância
+      é medida letra por letra. Quanto mais distante uma letra for da que
+      deveria ser, maior é essa distância.
+    """
+    diferenca = 0
+    real_size = len(senha_verdadeira)
+    ind_size  = len(individuo)
+    dif_size = abs(real_size - ind_size)
+
+    for letra_candidato, letra_oficial in zip(individuo, senha_verdadeira):
+        diferenca = diferenca + abs(ord(letra_candidato) - ord(letra_oficial))
+    
+
+    return (diferenca + dif_size)
+
 ###############################################################################
 #              Funções objetivo para populações                               #
 ###############################################################################
@@ -323,6 +380,15 @@ def funcao_objetivo_pop_senha(populacao, senha_verdadeira):
 
     return resultado
 
+def funcao_objetivo_pop_senha_desafio(populacao, senha_verdadeira):
+  
+    resultado = []
+
+    for individuo in populacao:
+        resultado.append(funcao_objetivo_senha_desafio(individuo, senha_verdadeira))
+
+    return resultado
+
 
 
 
@@ -348,6 +414,32 @@ def cruzamento_ponto_simples (pai, mae):
     filho2 = mae [ : ponto_de_corte] + pai [ponto_de_corte :]
     
     return filho1, filho2
+
+def cruzamento_ponto_simples_desafio (pai, mae):
+    """Operador de cruzamento de ponto simples,
+    
+    Args:
+        pai: uma lista representando um indivíduo
+        mãe: uma lista representando um indivíduo
+    
+    Returns:
+        Duas listas, sendo que cada uma representa um filho dos pais que foram os argumentos.
+    """
+    if len(pai) > len(mae):
+        ponto_de_corte = random.randint(1, len(mae) - 1)
+        
+    if len(mae) > len(pai):
+        ponto_de_corte = random.randint(1, len(pai) - 1)
+        
+    if len(mae) == len(pai):
+        ponto_de_corte = random.randint(1, len(pai) - 1)
+    
+      
+    filho1 = pai [ : ponto_de_corte] + mae [ponto_de_corte :]
+    filho2 = mae [ : ponto_de_corte] + pai [ponto_de_corte :]
+    
+    return filho1, filho2
+
 
 ###############################################################################
 #                   Funções para mutações                                     #
@@ -391,6 +483,25 @@ def mutacao_senha(individuo, letras):
     gene = random.randint(0, len(individuo) - 1)
     individuo[gene] = gene_letra(letras)
     return individuo 
+
+def mutacao_size(individuo):
+    
+    """Realiza mutação para o desafio de senha varáivel"""
+    
+    cross_point1 = random.randint(3, len(individuo) - 1)
+    cross_point2 = random.randint(3, len(individuo) - 1)
+    
+    if cross_point1 > cross_point2:
+        individuo = individuo [cross_point2 :: cross_point1]
+        
+    elif cross_point1 < cross_point2:
+        individuo = individuo [cross_point1 :: cross_point2]
+        
+    elif cross_point1 == cross_point2:
+        individuo = individuo [cross_point2 :: cross_point1]
+        
+    return individuo
+
                                 
 ###############################################################################
 #                   Funções da atividade 6                                    #

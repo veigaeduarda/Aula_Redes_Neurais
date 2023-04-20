@@ -643,10 +643,10 @@ def cruzamento_ponto_simples_desafio (pai, mae):
     '''
         
     if len(pai) < len(mae):
-        ponto_de_corte = random.randint(1, len(mae) - 1)
+        ponto_de_corte = random.randint(1, len(pai) - 1)
 
     else:
-        ponto_de_corte = random.randint(1, len(pai) - 1)
+        ponto_de_corte = random.randint(1, len(mae) - 1)
         
        
     

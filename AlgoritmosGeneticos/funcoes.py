@@ -4,8 +4,7 @@ import random
 #                                   Suporte                                   #
 ##############################################################################+
 
-
-# NOVIDADE
+# a6
 def distancia_entre_dois_pontos(a, b):
     """Computa a distância Euclidiana entre dois pontos em R^2
     Args:
@@ -25,7 +24,7 @@ def distancia_entre_dois_pontos(a, b):
     return dist
 
 
-# NOVIDADE
+# a6
 def cria_cidades(n):
     """Cria um dicionário aleatório de cidades com suas posições (x,y).
     Args:
@@ -42,6 +41,37 @@ def cria_cidades(n):
         cidades[f"Cidade {i}"] = (random.random(), random.random())
 
     return cidades
+
+
+# a7
+def computa_mochila(individuo, objetos, ordem_dos_nomes):
+    """Computa o valor total e peso total de uma mochila
+    Args:
+      individiuo:
+        Lista binária contendo a informação de quais objetos serão selecionados.
+      objetos:
+        Dicionário onde as chaves são os nomes dos objetos e os valores são
+        dicionários com a informação do peso e valor.
+      ordem_dos_nomes:
+        Lista contendo a ordem dos nomes dos objetos.
+    Returns:
+      valor_total: valor total dos itens da mochila em unidades de dinheiros.
+      peso_total: peso total dos itens da mochila em unidades de massa.
+    """
+
+    valor_total = 0
+    peso_total = 0
+    
+    for pegou_o_item_ou_nao, nome_do_item in zip (individuo, ordem_dos_nomes):
+        if pegou_o_item_ou_nao == 1:
+            valor_do_item = objetos [nome_do_item]["valor"]
+            peso_do_item = objetos[nome_do_item]["peso"]
+            
+            valor_total = valor_total + valor_do_item
+            peso_total = peso_total + peso_do_item
+
+    return valor_total, peso_total
+
 
 ###############################################################################
 #                   Funções para os  Genes                                    #
@@ -142,24 +172,22 @@ def individuo_senha(tamanho_da_senha, letras):
 
 #desafio
 
-def individuo_desafio(mini, maxi):
-    """Cria um candidato para o problema da senha
+def individuo_desafio(tamanho_max, letras):
+    '''Cria um individuo para o problema da senha variável.
     Args:
-      tamanho_da_senha: inteiro representando o tamanho da senha.
-      letras: letras que podem ser sorteadas.
-    Return:
-      Lista com n letras
-    """
+        tamanho_max: tamanho máximo que a senha pode assumir;
+        letras: possíveis letras a serem sorteadas.
+    
+    Returns:
+        Uma lista que representa o individuo.
+    '''
+    tamanho_individuo = random.randint(3,tamanho_max)
+    individuo = []
+    for _ in range(tamanho_individuo):
+        individuo.append(gene_sv(letras))
+    return individuo
 
-    candidato = []
-    tamanho_da_senha = random.randit(mini, maxi)
-
-    for n in range(tamanho_da_senha):
-        candidato.append(gene_letra(letras))
-
-    return candidato
-
-# NOVIDADE
+# a6
 def individuo_cv(cidades):
     """Sorteia um caminho possível no problema do caixeiro viajante
     Args:
@@ -242,7 +270,7 @@ def populacao_inicial_desafio(tamanho, mini, maxi, letras):
         populacao.append(individuo_senha(tamanho_senha, letras))
     return populacao
 
-# NOVIDADE
+# a6
 def populacao_inicial_cv(tamanho, cidades):
     """Cria população inicial no problema do caixeiro viajante.
     Args
@@ -403,7 +431,7 @@ def funcao_objetivo_senha_desafio(individuo, senha_verdadeira):
 
     return (diferenca + dif_size)
 
-# NOVIDADE
+# a6
 def funcao_objetivo_cv(individuo, cidades):
     """Computa a funcao objetivo de um individuo no problema do caixeiro viajante.
     Args:
@@ -436,6 +464,33 @@ def funcao_objetivo_cv(individuo, cidades):
     distancia = distancia + percurso
     
     return distancia
+
+
+# a7
+def funcao_objetivo_mochila(individuo, objetos, limite, ordem_dos_nomes):
+    """Computa a funcao objetivo de um candidato no problema da mochila.
+    Args:
+      individiuo:
+        Lista binária contendo a informação de quais objetos serão selecionados.
+      objetos:
+        Dicionário onde as chaves são os nomes dos objetos e os valores são
+        dicionários com a informação do peso e valor.
+      limite:
+        Número indicando o limite de peso que a mochila aguenta.
+      ordem_dos_nomes:
+        Lista contendo a ordem dos nomes dos objetos.
+    Returns:
+      Valor total dos itens inseridos na mochila considerando a penalidade para
+      quando o peso excede o limite.
+    """
+
+    valor_mochila, peso_mochila = computa_mochila(individuo, objetos, ordem_dos_nomes)
+    
+    if peso_mochila > limite:
+        valor_mochila = 0.01
+    
+    return valor_mochila 
+
 
 ###############################################################################
 #              Funções objetivo para populações                               #
@@ -490,6 +545,8 @@ def funcao_objetivo_pop_senha(populacao, senha_verdadeira):
 
     return resultado
 
+##desafio
+
 def funcao_objetivo_pop_senha_desafio(populacao, senha_verdadeira):
   
     resultado = []
@@ -500,7 +557,7 @@ def funcao_objetivo_pop_senha_desafio(populacao, senha_verdadeira):
     return resultado
 
 
-# NOVIDADE
+# a6
 def funcao_objetivo_pop_cv(populacao, cidades):
     """Computa a funcao objetivo de uma população no problema do caixeiro viajante.
     Args:
@@ -517,6 +574,34 @@ def funcao_objetivo_pop_cv(populacao, cidades):
     resultado = []
     for individuo in populacao:
         resultado.append(funcao_objetivo_cv(individuo, cidades))
+    return resultado
+
+#a7
+
+def funcao_objetivo_pop_mochila(populacao, objetos, limite, ordem_dos_nomes):
+    """Computa a fun. objetivo de uma populacao no problema da mochila
+    Args:
+      populacao:
+        Lista com todos os individuos da população
+      objetos:
+        Dicionário onde as chaves são os nomes dos objetos e os valores são
+        dicionários com a informação do peso e valor.
+      limite:
+        Número indicando o limite de peso que a mochila aguenta.
+      ordem_dos_nomes:
+        Lista contendo a ordem dos nomes dos objetos.
+    Returns:
+      Lista contendo o valor dos itens da mochila de cada indivíduo.
+    """
+
+    resultado = []
+    for individuo in populacao:
+        resultado.append(
+            funcao_objetivo_mochila(
+                individuo, objetos, limite, ordem_dos_nomes
+            )
+        )
+
     return resultado
 
 
@@ -543,33 +628,33 @@ def cruzamento_ponto_simples (pai, mae):
     
     return filho1, filho2
 
+#desafio
+
 def cruzamento_ponto_simples_desafio (pai, mae):
-    """Operador de cruzamento de ponto simples,
+    
+     '''Operador de cruzamento de ponto simples para o problema da senha variável.
     
     Args:
-        pai: uma lista representando um indivíduo
-        mãe: uma lista representando um indivíduo
+        pai: Uma lista representando um individuo;
+        mae: Uma lista representando um individuo.
     
     Returns:
         Duas listas, sendo que cada uma representa um filho dos pais que foram os argumentos.
-    """
-    if len(pai) > len(mae):
+    '''
+        
+    if len(pai) < len(mae):
         ponto_de_corte = random.randint(1, len(mae) - 1)
-        
-    if len(mae) > len(pai):
+
+    else:
         ponto_de_corte = random.randint(1, len(pai) - 1)
         
-    if len(mae) == len(pai):
-        ponto_de_corte = random.randint(1, len(pai) - 1)
+       
     
-      
-    filho1 = pai [ : ponto_de_corte] + mae [ponto_de_corte :]
-    filho2 = mae [ : ponto_de_corte] + pai [ponto_de_corte :]
+    filho1 = pai[:ponto_de_corte] + mae[ponto_de_corte:]
+    filho2 = mae[:ponto_de_corte] + pai[ponto_de_corte:]
     
     return filho1, filho2
 
-
-# NOVIDADE
 def cruzamento_ordenado(pai, mae):
     """Operador de cruzamento ordenado.
     Neste cruzamento, os filhos mantém os mesmos genes que seus pais tinham,
@@ -694,6 +779,6 @@ def mutacao_de_troca(individuo):
                     
                                 
 ###############################################################################
-#                   Funções da atividade 6                                    #
+#                                                                             #
 ###############################################################################
 

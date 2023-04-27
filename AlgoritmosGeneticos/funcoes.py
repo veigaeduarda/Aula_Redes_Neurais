@@ -184,7 +184,7 @@ def individuo_desafio(tamanho_max, letras):
     tamanho_individuo = random.randint(3,tamanho_max)
     individuo = []
     for _ in range(tamanho_individuo):
-        individuo.append(gene_sv(letras))
+        individuo.append(gene_letra(letras))
     return individuo
 
 # a6
@@ -255,20 +255,21 @@ def populacao_inicial_senha(tamanho, tamanho_senha, letras):
         populacao.append(individuo_senha(tamanho_senha, letras))
     return populacao
 
-
-def populacao_inicial_desafio(tamanho, mini, maxi, letras):
-    """Cria população inicial no problema da senha
-    Args
-      tamanho: tamanho da população.
-      tamanho_senha: inteiro representando o tamanho da senha.
-      letras: letras possíveis de serem sorteadas.
+#desafio
+def pop_inicial_desafio(num_individuos, tamanho_max, letras): 
+    '''Cria uma população para o problema da senha variável.
+    Args:
+        num_individuos: número de individuos da população;
+        tamanho_max: tamanho máximo que a senha pode assumir;
+        letras: possíveis letras a serem sorteadas.
+    
     Returns:
-      Lista com todos os indivíduos da população no problema da senha.
-    """
-    populacao = []
-    for n in range(tamanho):
-        populacao.append(individuo_senha(tamanho_senha, letras))
-    return populacao
+        Uma lista que contem todos os individuos.
+    '''
+    pop = []
+    for _ in range(num_individuos):
+        pop.append(individuo_desafio(tamanho_max, letras))
+    return pop
 
 # a6
 def populacao_inicial_cv(tamanho, cidades):
@@ -313,7 +314,7 @@ def selecao_roleta_max (populacao, fitness):
 
 # Atividade 5
 
-def selecao_torneio_min(populacao, fitness, tamanho_torneio=3):
+def selecao_torneio_min(populacao, fitness, tamanho_torneio):
     """Faz a seleção de uma população usando torneio.
     Nota: da forma que está implementada, só funciona em problemas de
     minimização.
@@ -410,7 +411,7 @@ def funcao_objetivo_senha(individuo, senha_verdadeira):
     return diferenca
 
 #desafio
-def funcao_objetivo_senha_desafio(individuo, senha_verdadeira):
+def funcao_objetivo_senha_desafio(individuo, senha_verdadeira, penalidade):
     """Computa a funcao objetivo de um individuo no problema da senha
     Args:
       individiuo: lista contendo as letras da senha
@@ -547,15 +548,22 @@ def funcao_objetivo_pop_senha(populacao, senha_verdadeira):
 
 ##desafio
 
-def funcao_objetivo_pop_senha_desafio(populacao, senha_verdadeira):
-  
-    resultado = []
+def funcao_objetivo_pop_senha_desafio(populacao, senha_verdadeira, penalidade):
+    '''Computa a funcao objetivo de uma populaçao no problema da senha.
+    Args:
+        populacao: lista com todos os individuos da população;
+        senha_verdadeira: a senha que você está tentando descobrir;
+        peso_da_penalidade: peso para a diferenca de tamanho entre o individuo e a senha real.
+    
+    Returns:
+      Lista contendo os valores da distância entre senhas.
+    '''
+    fitness = []
 
     for individuo in populacao:
-        resultado.append(funcao_objetivo_senha_desafio(individuo, senha_verdadeira))
+        fitness.append(funcao_objetivo_senha_desafio(individuo, senha_verdadeira, penalidade))
 
-    return resultado
-
+    return fitness
 
 # a6
 def funcao_objetivo_pop_cv(populacao, cidades):
@@ -630,9 +638,8 @@ def cruzamento_ponto_simples (pai, mae):
 
 #desafio
 
-def cruzamento_ponto_simples_desafio (pai, mae):
-    
-     '''Operador de cruzamento de ponto simples para o problema da senha variável.
+def cruzamento_ponto_simples_desafio(pai, mae): 
+    '''Operador de cruzamento de ponto simples para o problema da senha variável.
     
     Args:
         pai: Uma lista representando um individuo;
@@ -641,19 +648,16 @@ def cruzamento_ponto_simples_desafio (pai, mae):
     Returns:
         Duas listas, sendo que cada uma representa um filho dos pais que foram os argumentos.
     '''
-        
     if len(pai) < len(mae):
         ponto_de_corte = random.randint(1, len(pai) - 1)
-
     else:
         ponto_de_corte = random.randint(1, len(mae) - 1)
-        
-       
     
     filho1 = pai[:ponto_de_corte] + mae[ponto_de_corte:]
     filho2 = mae[:ponto_de_corte] + pai[ponto_de_corte:]
     
     return filho1, filho2
+
 
 def cruzamento_ordenado(pai, mae):
     """Operador de cruzamento ordenado.
@@ -732,23 +736,23 @@ def mutacao_senha(individuo, letras):
     individuo[gene] = gene_letra(letras)
     return individuo 
 
-def mutacao_size(individuo):
+#DESAFIO
+def mutacao_size (individuo, letras, tamanho_max):
     
     """Realiza mutação para o desafio de senha varáivel"""
     
-    cross_point1 = random.randint(3, len(individuo) - 1)
-    cross_point2 = random.randint(3, len(individuo) - 1)
-    
-    if cross_point1 > cross_point2:
-        individuo = individuo [cross_point2 :: cross_point1]
-        
-    elif cross_point1 < cross_point2:
-        individuo = individuo [cross_point1 :: cross_point2]
-        
-    elif cross_point1 == cross_point2:
-        individuo = individuo [cross_point2 :: cross_point1]
-        
-    return individuo
+    if random.random() <.5:
+        gene = random.randint(0, len(individuo) - 1)
+        individuo[gene] = gene_letra(letras)
+        return individuo
+    else:
+        novo_tamanho = random.randint(3, tamanho_max)
+        if novo_tamanho < len(individuo):
+            return individuo[:novo_tamanho]
+        else:
+            for _ in range(novo_tamanho - len(individuo)):
+                individuo.append(gene_letra(letras))
+            return individuo
 
 # NOVIDADE
 def mutacao_de_troca(individuo):

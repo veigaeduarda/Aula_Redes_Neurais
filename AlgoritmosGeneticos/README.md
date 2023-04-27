@@ -10,3 +10,5 @@ Na busca em grande, o algoritmo testa todas (eu disse: TODAS!) as combinações 
 Está curioso(a) para entender como aconteceu esses dois tipos de busca? Aqui na pasta de Algortimos Genéticos você clica em "experimento A.01" para busca aleatória e "experimento A.02" para busca em grade.
 
 No experimento A.03 fomos introduzidos ao algortimo genético e trabalhamos com contanstes como tamanho da população, número de genes, de gerações, chance de cruzamento e chance de mutações. Já no A.04, utilizamos as funções já criadas nas práticas anteriores, adicionamos novas e trabalhamos com caixas não binárias! Para entender melhor clique em "experimento A.03" e "experimento A.04".
+
+Os outros experimentos fomos aprimorando o nosso conhecimento em Algoritmos Genéticos, com o problema da mochila, das senhas

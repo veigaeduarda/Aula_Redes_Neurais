@@ -14,7 +14,9 @@ Para saber mais clique em Algoritmos Genéticos e leia o README para encontrar s
 
 ## Sobre a disciplina e os outros experimentos que você econtrará por aqui:
 
-Gostou do que leu? Tem muito mais dentro da pasta de `Algoritmos Genéticos`, lá vamos abrir mais ainda a nossa percepção para novos experimentos de otimzação! Te espro lá! :)
+Gostou do que leu? Tem muito mais dentro da pasta de `Algoritmos Genéticos`, lá vamos abrir mais ainda a nossa percepção para novos experimentos de otimização! Te espro lá! :)
+
+_lembrete: Esse é um curso em andamento, então ainda não foi adicionado nenhum experimento na pasta de `Redes Neurais`. Não se preocupe com essa parte agora, logo mais estaremos repleto de experimentos por lá também!_
 
 
 

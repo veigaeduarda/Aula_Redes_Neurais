@@ -1,4 +1,4 @@
-# 🧠 **Disciplina de Redes Neurais e Algoritmos Genéticos** 🧬
+#  **Disciplina de Redes Neurais e Algoritmos Genéticos** 
 
 ![image](Imagens/inicial.png)
 

@@ -25,6 +25,6 @@ Esse experimento é o "experimento A.05" e ele é usado para minimizar o erro ao
 
 É um problema NP-difícil e utilizamos um algoritmo genético para que o viajante passasse por todas as cidades sem repetir a passagem de nenhuma. Esse é o "experimento A.06" e eu me inspirei no estado de Roraima, pois possui apenas quinze municípios, a menor quantidade dentre os estados brasileiros. Logo, o meu viajante é um aventureiro que quer conhecer toda essa região.
 
-*Realizando restrições - por mei do problema da mochila infinita*
+➡️*Realizando restrições - por mei do problema da mochila infinita*
 
-É um problema onde queremos maximizar uma função, entretanto, ela possui restrições que devem ser seguidas. Clique no "experimento A.07" e descubra como colocamos limite de carga para os itens que iriam entrar em uma mochila!
+É um problema onde queremos maximizar uma função, entretanto, ela possui restrições que devem ser seguidas. Clique no "experimento A.07" e descubra como colocamos limite de carga para os itens que iriam entrar em uma mochila com Algoritmos Genéticos!

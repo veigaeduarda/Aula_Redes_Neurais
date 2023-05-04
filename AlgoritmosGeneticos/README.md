@@ -30,4 +30,5 @@ Esse experimento é o "experimento A.05" e ele é usado para minimizar o erro ao
 É um problema onde queremos maximizar uma função, entretanto, ela possui restrições que devem ser seguidas. Clique no "experimento A.07" e descubra como colocamos limite de carga para os itens que iriam entrar em uma mochila com Algoritmos Genéticos!
 
 ➡️*Experimento G.01 - senha de tamanho variavel.ipynb*
-Esse foi uma atividade para treinarmos o nosso aprendizado, cada aluno escolheu um desafio e eu escolhi o de senha com tamanho variável. Se parece com um problema já resolvido, no entanto, não se sabe o tamanho inicial da senha, assim, o algoritmo deve descobrir este tamanho.
+
+Essa foi uma atividade para treinarmos o nosso aprendizado, cada aluno escolheu um desafio e eu escolhi o de senha com tamanho variável. Se parece com um problema já resolvido, no entanto, não se sabe o tamanho inicial da senha, assim, o algoritmo deve descobrir este tamanho.

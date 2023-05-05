@@ -1,5 +1,3 @@
 # Experimentos de redes neurais artificiais
 
-Coloque seus experimentos de redes neurais nesta pasta.
-
-Esceva um README aqui para guiar o leitor sobre seus experimentos realizados.
+Fala, Colega! Estamos começando aprender sobre Redes Neurasi, já fomos introduzidos aos conceitos de derivadas que usaremos aqui e de classes! Nos próximos dias voltarei para dar mais detalhes sobre o que estou fazendo :)

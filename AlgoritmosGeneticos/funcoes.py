@@ -753,6 +753,9 @@ def mutacao_size (individuo, letras, tamanho_max):
             for _ in range(novo_tamanho - len(individuo)):
                 individuo.append(gene_letra(letras))
             return individuo
+        
+        
+# Código do github @jpab2004
 
 # NOVIDADE
 def mutacao_de_troca(individuo):

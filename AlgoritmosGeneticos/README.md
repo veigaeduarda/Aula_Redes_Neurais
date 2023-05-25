@@ -38,4 +38,7 @@ Essa foi uma atividade para treinarmos o nosso aprendizado, cada aluno escolheu 
 
 ## Agradeciementos 
 
+
+![image](obrigado.png)
+
 Agradeço à todos os glias (guias nas aulas de computação) que me ajudaram de alguma forma na realização dos experimentos. Em especial, agradeço aos meu colegas Pedro Sophia ([@PedroSophiaaa](https://github.com/PedroSophiaaa)) e João Pedro Arroucha ([@jpab2004](https://github.com/jpab2004)) pela ajuda no desafio da senha com tamanho variável.

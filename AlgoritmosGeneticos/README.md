@@ -17,6 +17,7 @@ Por outro lado, na `busca em grande`, o algoritmo testa todas (eu disse: TODAS!)
 
 No experimento A.03 fomos introduzidos ao algortimo genético e trabalhamos com contanstes como tamanho da população, número de genes, de gerações, chance de cruzamento e chance de mutações. Já no A.04, utilizamos as funções já criadas nas práticas anteriores, adicionamos novas e trabalhamos com caixas não binárias! Para entender melhor clique em "experimento A.03" e "experimento A.04".
 
+
 ➡️*Descobrindo a senha (com um tamanho definido)*
 
 Esse experimento é o "experimento A.05" e ele é usado para minimizar o erro ao testar uma senha. Para cada geração, são selecionados os indivíduos para passar por ela e para isso ocorrer usamos a função de seleção por meio de um "torneio". 
@@ -32,3 +33,9 @@ Esse experimento é o "experimento A.05" e ele é usado para minimizar o erro ao
 ➡️*Experimento G.01 - senha de tamanho variavel.ipynb*
 
 Essa foi uma atividade para treinarmos o nosso aprendizado, cada aluno escolheu um desafio e eu escolhi o de senha com tamanho variável. Se parece com um problema já resolvido, no entanto, não se sabe o tamanho inicial da senha, assim, o algoritmo deve descobrir este tamanho.
+
+
+
+## Agradeciementos 
+
+Agradeço à todos os glias (guias nas aulas de computação) que me ajudaram de alguma forma na realização dos experimentos. Em especial, agradeço aos meu colegas Pedro Sophia e João Pedro Arroucha pela ajuda no desafio da senha com tamanho variável.
